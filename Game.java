@@ -86,6 +86,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
         time.start();
         if(play){
             if(new Rectangle(BallX, BallY, 20, 20).intersects(new Rectangle(PlayerX, 550, 100, 8))){
+               BallY = 550 - 20;
                BallYdir = -BallYdir;
             }
 
@@ -131,13 +132,9 @@ public class Game extends JPanel implements KeyListener, ActionListener {
             }
 
             if (Bricks <= 0) {
-               play = false;
-               BallXdir = 0;
-               BallYdir = 0;
-
-               // Win message
-               JOptionPane.showMessageDialog(this, "YOU WIN!\nScore: " + score);
-               resetGame();
+               map = new mapGen(3, 7);
+            Bricks = 3 * 7;
+            //map reset when all brick get destroyed(endless)
                }
 
          }
