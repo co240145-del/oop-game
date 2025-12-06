@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Font;
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,6 +11,15 @@ public class MainMenu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
+        //Game Scene
+        JFrame GameScene = new JFrame();
+        GameScene.setBounds(10,10,700,600);
+        GameScene.setTitle("Brick Crash");
+        GameScene.setResizable(false);
+        GameScene.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GameScene.setLocationRelativeTo(null);
+        Game game = new Game();
+        GameScene.add(game);
 
         // Background
         Image backgroundImage = new ImageIcon("").getImage();
@@ -93,8 +100,10 @@ public class MainMenu {
 
 
         //button responce
-        startButton.addActionListener(e ->
-                JOptionPane.showMessageDialog(frame, "Start clicked!")
+        startButton.addActionListener(e ->{
+            frame.setVisible(false);
+            GameScene.setVisible(true);
+            }       
         );
         exitButton.addActionListener(e -> System.exit(0));
 
