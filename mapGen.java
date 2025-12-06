@@ -12,7 +12,7 @@ public class mapGen {
 		blockWidth = 540/col; //Change for preference
 		blockHeight = 150/row; //Change for preference
 
-		Random r = new Random();
+		Random random = new Random();
 
 		for(int i = 0; i < map.length; i++){
 			for(int j = 0; j < map[0].length; j++){
@@ -21,7 +21,7 @@ public class mapGen {
 				if(level == 1){
 					map[i][j] = 1;
 				} else{
-					map[i][j] = (r.nextFloat() < 0.5) ? 1 : 0; //50% chance for durability 1 or 2
+					map[i][j] = (random.nextFloat() < 0.5) ? 1 : 0; //50% chance for durability 1 or 2
 				}
 			}
 		}
