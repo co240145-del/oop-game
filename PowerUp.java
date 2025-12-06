@@ -22,8 +22,7 @@ public class PowerUp {
 
         switch (type) {
             case 0: g.setColor(Color.CYAN); break;       // bigger paddle
-            case 1: g.setColor(Color.MAGENTA); break;    // slower ball
-            case 2: g.setColor(Color.ORANGE); break;     // extra points  
+            case 1: g.setColor(Color.ORANGE); break;     // extra points  
         }
 
         g.fillOval(x, y, width, height);
