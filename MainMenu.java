@@ -37,7 +37,6 @@ public class MainMenu {
         gbc.insets = new Insets(20, 20, 20, 20); 
 
 
-
         //label/title
         JLabel label = new JLabel("Brick Braker");
         label.setFont(new Font("Arial", Font.BOLD, 48));
@@ -56,8 +55,6 @@ public class MainMenu {
 
 
         Font customFont = new Font("Serif", Font.BOLD, 50);
-        
-
 
         JButton startButton = new JButton("Start");
         startButton.setFont(customFont);
@@ -84,8 +81,6 @@ public class MainMenu {
             }
         });
 
-
-
          exitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -106,10 +101,6 @@ public class MainMenu {
             }       
         );
         exitButton.addActionListener(e -> System.exit(0));
-
-
-
-
 
         //add to frame
         buttonPanel.add(startButton);
