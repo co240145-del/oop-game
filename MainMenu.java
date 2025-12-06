@@ -38,8 +38,8 @@ public class MainMenu {
 
 
         //label/title
-        JLabel label = new JLabel("Brick Braker");
-        label.setFont(new Font("Arial", Font.BOLD, 48));
+        JLabel label = new JLabel("Brick Breaker");
+        label.setFont(new Font("Arial", Font.BOLD, 86));
         label.setForeground(Color.WHITE);
 
         gbc.gridx = 0;
