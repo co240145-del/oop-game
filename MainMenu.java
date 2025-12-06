@@ -14,9 +14,6 @@ public class MainMenu {
         frame.setLocationRelativeTo(null);
 
 
-
-
-
         // Background
         Image backgroundImage = new ImageIcon("").getImage();
         JPanel backgroundPanel = new JPanel() {
@@ -34,8 +31,6 @@ public class MainMenu {
 
 
 
-
-
         //label/title
         JLabel label = new JLabel("Brick Braker");
         label.setFont(new Font("Arial", Font.BOLD, 48));
@@ -47,9 +42,6 @@ public class MainMenu {
         backgroundPanel.add(label, gbc);
 
 
-
-
-
         //button panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
@@ -58,7 +50,6 @@ public class MainMenu {
 
         Font customFont = new Font("Serif", Font.BOLD, 50);
         
-
 
 
         JButton startButton = new JButton("Start");
@@ -72,10 +63,6 @@ public class MainMenu {
         exitButton.setPreferredSize(new Dimension(300, 100));
         exitButton.setBackground(Color.white);
         exitButton.setForeground(Color.BLUE);
-
-
-
-
 
 
         startButton.addMouseListener(new MouseAdapter() {
@@ -92,8 +79,6 @@ public class MainMenu {
 
 
 
-
-
          exitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -105,9 +90,6 @@ public class MainMenu {
                 exitButton.setBackground(Color.white);
             }
         });
-
-
-
 
 
         //button responce

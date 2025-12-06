@@ -1,5 +1,5 @@
 import java.awt.*;
-
+	
 public class mapGen {
    public int map[][]; //To contain the bricks
    public int blockWidth;
@@ -10,6 +10,8 @@ public class mapGen {
 		for(int i = 0; i < map.length; i++){
 			for(int j = 0; j < map[0].length; j++){
 				map[i][j] = 1; //to not be intercepted with the ball
+
+
 			}
 		}
 		blockWidth = 540/col; //Change for preference
@@ -38,8 +40,4 @@ public class mapGen {
 //brick color
 //paddle color
 //ball color
-//background color
-
-
-
-
+//background colors
