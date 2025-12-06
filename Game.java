@@ -13,9 +13,14 @@ public class Game extends JPanel implements KeyListener, ActionListener {
    private ArrayList<PowerUp> powerUps = new ArrayList<>();
    private boolean play = false;
    private int score = 0;
+   //Buff flags
+   private boolean bigPaddleActive = false;
+   private boolean slowBallActive = false;
 
+   // Buff timer duration (ms)
+   private final int BUFF_DURATION = 5000; // 5 seconds
    private int Bricks = 21;
-
+   private int paddleWidth = 100; // default
    private Timer time;
    private int delay = 8;
 
@@ -28,7 +33,9 @@ public class Game extends JPanel implements KeyListener, ActionListener {
    //Ball Direction
    private int BallXdir = -1;
    private int BallYdir = -2;
-
+   
+   private Timer bigPaddleTimer;
+   private Timer slowBallTimer;
 
 
    private mapGen map;
@@ -64,7 +71,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 
       //Paddle
       gameObject.setColor(Color.green);
-      gameObject.fillRect(PlayerX, 550, 100, 8);
+      gameObject.fillRect(PlayerX, 550, paddleWidth, 8);
 
       //Ball
       gameObject.setColor(Color.red);
@@ -89,7 +96,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         time.start();
         if(play){
-            if(new Rectangle(BallX, BallY, 20, 20).intersects(new Rectangle(PlayerX, 550, 100, 8))){
+            if(new Rectangle(BallX, BallY, 20, 20).intersects(new Rectangle(PlayerX, 550, paddleWidth, 8))){
                BallY = 550 - 20;//fix for the ball getting stuck in paddle
                BallYdir = -BallYdir;
             }
@@ -248,31 +255,64 @@ for (int i = 0; i < powerUps.size(); i++) {
     public void keyReleased(KeyEvent e) {}
 
     public void applyPowerUp(int type) {
-    
-        switch (type) {
-            case 0:
-                // BIGGER PADDLE
-                // Just draw a bigger one
-                // Or add PaddleWidth variable for clean code
-                System.out.println("Bigger paddle power-up!");
-                PlayerX -= 20; // center it
-                // Increase paddle width in drawing code
-                break;
-    
-            case 1:
-                // SLOWER BALL
-                System.out.println("Slower ball power-up!");
-                if (BallXdir > 0) BallXdir--;
-                else BallXdir++;
-    
-                if (BallYdir > 0) BallYdir--;
-                else BallYdir++;
-                break;
-    
-            case 2:
-                // EXTRA POINTS
-                score += 5;
-                break;
-        }
+
+    switch (type) {
+
+        case 0: // BIG PADDLE
+            activateBigPaddle();
+            break;
+
+        case 1: // SLOW BALL
+            activateSlowBall();
+            break;
+
+        case 2: // EXTRA POINTS
+            score += 5;
+            break;
     }
+    }
+    private void activateBigPaddle() {
+
+    if (!bigPaddleActive) {
+        
+
+        bigPaddleActive = true;
+
+        // Increase paddle size
+        paddleWidth = 150;   // <-- Change paddle to use paddleWidth
+
+        // Timer removes effect after duration
+        bigPaddleTimer = new Timer(BUFF_DURATION, e -> {
+            
+
+            paddleWidth = 100; // restore original
+            bigPaddleActive = false;
+        });
+
+        bigPaddleTimer.setRepeats(false);
+        bigPaddleTimer.start();
+    }
+}
+private void activateSlowBall() {
+
+    if (!slowBallActive) {
+        
+
+        slowBallActive = true;
+
+        BallXdir /= 2;
+        BallYdir /= 2;
+
+        slowBallTimer = new Timer(BUFF_DURATION, e -> {
+            
+
+            BallXdir *= 2;
+            BallYdir *= 2;
+            slowBallActive = false;
+        });
+
+        slowBallTimer.setRepeats(false);
+        slowBallTimer.start();
+    }
+}
 }
