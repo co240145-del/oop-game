@@ -13,6 +13,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
    private ArrayList<PowerUp> powerUps = new ArrayList<>();
    private boolean play = false;
    private int score = 0;
+   private int level = 1;
    //Buff flags
    private boolean bigPaddleActive = false;
    private boolean slowBallActive = false;
@@ -23,6 +24,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
    private int paddleWidth = 100; // default
    private Timer time;
    private int delay = 8;
+
 
    private int PlayerX = 310;
 
@@ -41,7 +43,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
    private mapGen map;
 
    public Game(){
-      map = new mapGen(3, 7);
+      map = new mapGen(3, 7, level);
       addKeyListener(this);
       setFocusable(true);
       setFocusTraversalKeysEnabled(false);
@@ -154,7 +156,8 @@ public class Game extends JPanel implements KeyListener, ActionListener {
             }
 
             if (Bricks <= 0) {
-            map = new mapGen(3, 7);
+            level++;
+            map = new mapGen(3, 7, level);
             Bricks = 3 * 7;
             //map reset when all brick get destroyed(endless)
             
@@ -195,7 +198,7 @@ for (int i = 0; i < powerUps.size(); i++) {
 
     score = 0;
 
-    map = new mapGen(3, 7);
+    map = new mapGen(3, 7, level);
     Bricks = 3 * 7; // automatically set to 21
 
     repaint();
@@ -231,7 +234,7 @@ for (int i = 0; i < powerUps.size(); i++) {
                PlayerX = 310;
                score = 0;
                Bricks = 21;
-               map = new mapGen(3, 7);
+               map = new mapGen(3, 7, level);
                repaint();
             }
         }

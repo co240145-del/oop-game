@@ -1,22 +1,32 @@
 import java.awt.*;
+import java.util.Random;
 	
 public class mapGen {
    public int map[][]; //To contain the bricks
    public int blockWidth;
 	public int blockHeight;
+	private Random random;
 
-	public mapGen(int row, int col){
+	public mapGen(int row, int col, int level){
 		map = new int [row][col];
-		for(int i = 0; i < map.length; i++){
-			for(int j = 0; j < map[0].length; j++){
-				map[i][j] = 1; //to not be intercepted with the ball
-
-
-			}
-		}
 		blockWidth = 540/col; //Change for preference
 		blockHeight = 150/row; //Change for preference
+
+		Random r = new Random();
+
+		for(int i = 0; i < map.length; i++){
+			for(int j = 0; j < map[0].length; j++){
+				//Increase brick durability with level
+				// map[i][j] = random.nextInt(Math.min(1 + level, 5)); //Durability from 0 to 4
+				if(level == 1){
+					map[i][j] = 1;
+				} else{
+					map[i][j] = (r.nextFloat() < 0.5) ? 1 : 0; //50% chance for durability 1 or 2
+				}
+			}
+		}
 	}
+	
 	public void draw(Graphics2D g){   
 		for(int i = 0; i < map.length; i++){
 			for(int j = 0; j < map[0].length; j++){
