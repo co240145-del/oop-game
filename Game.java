@@ -16,7 +16,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
    private int level = 1;
    //Buff flags
    private boolean bigPaddleActive = false;
-   private boolean slowBallActive = false;
+
 
    // Buff timer duration (ms)
    private final int BUFF_DURATION = 5000; // 5 seconds
@@ -37,8 +37,6 @@ public class Game extends JPanel implements KeyListener, ActionListener {
    private int BallYdir = -2;
    
    private Timer bigPaddleTimer;
-   private Timer slowBallTimer;
-
 
    private mapGen map;
 
@@ -264,63 +262,37 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 
     public void applyPowerUp(int type) {
 
-    switch (type) {
+        switch (type) {
 
-        case 0: // BIG PADDLE
-            activateBigPaddle();
-            break;
+            case 0: // BIG PADDLE
+                activateBigPaddle();
+                break;
 
-        case 1: // SLOW BALL
-            activateSlowBall();
-            break;
-
-        case 2: // EXTRA POINTS
-            score += 5;
-            break;
-    }
+            case 1: // EXTRA POINTS
+                score += 5;
+                break;
+        }
     }
     private void activateBigPaddle() {
 
-    if (!bigPaddleActive) {
-        
+        if (!bigPaddleActive) {
 
-        bigPaddleActive = true;
 
-        // Increase paddle size
-        paddleWidth = 150;   // <-- Change paddle to use paddleWidth
+            bigPaddleActive = true;
 
-        // Timer removes effect after duration
-        bigPaddleTimer = new Timer(BUFF_DURATION, e -> {
-            
+            // Increase paddle size
+            paddleWidth = 150;   // <-- Change paddle to use paddleWidth
 
-            paddleWidth = 100; // restore original
-            bigPaddleActive = false;
-        });
+            // Timer removes effect after duration
+            bigPaddleTimer = new Timer(BUFF_DURATION, e -> {
 
-        bigPaddleTimer.setRepeats(false);
-        bigPaddleTimer.start();
+
+                paddleWidth = 100; // restore original
+                bigPaddleActive = false;
+            });
+
+            bigPaddleTimer.setRepeats(false);
+            bigPaddleTimer.start();
+        }
     }
-}
-private void activateSlowBall() {
-
-    if (!slowBallActive) {
-        
-
-        slowBallActive = true;
-
-        BallXdir /= 2;
-        BallYdir /= 2;
-
-        slowBallTimer = new Timer(BUFF_DURATION, e -> {
-            
-
-            BallXdir *= 2;
-            BallYdir *= 2;
-            slowBallActive = false;
-        });
-
-        slowBallTimer.setRepeats(false);
-        slowBallTimer.start();
-    }
-}
 }
