@@ -8,7 +8,7 @@ public class MainMenu {
 
         //Main Menu
         JFrame frame = new JFrame("Brick Crash: Main Menu");
-        frame.setSize(1000, 800);
+        frame.setSize(700, 600);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -35,8 +35,8 @@ public class MainMenu {
         };
 
         backgroundPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(20, 20, 20, 20); 
+        GridBagConstraints grid = new GridBagConstraints();
+        grid.insets = new Insets(20, 20, 20, 20); 
 
 
         //label/title
@@ -44,10 +44,10 @@ public class MainMenu {
         label.setFont(new Font("Arial", Font.BOLD, 86));
         label.setForeground(Color.WHITE);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.CENTER;
-        backgroundPanel.add(label, gbc);
+        grid.gridx = 0;
+        grid.gridy = 0;
+        grid.anchor = GridBagConstraints.CENTER;
+        backgroundPanel.add(label, grid);
 
 
         //button panel
@@ -109,8 +109,8 @@ public class MainMenu {
         buttonPanel.add(exitButton);
 
 
-        gbc.gridy = 1;
-        backgroundPanel.add(buttonPanel, gbc);
+        grid.gridy = 1;
+        backgroundPanel.add(buttonPanel, grid);
 
         frame.setContentPane(backgroundPanel);
         frame.setVisible(true);

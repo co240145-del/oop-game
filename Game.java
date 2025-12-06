@@ -69,7 +69,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
       // Score
       gameObject.setColor(Color.white);
       gameObject.setFont(new Font( "arial", Font.BOLD, 25));
-      gameObject.drawString("Points:"+score, 20, 30);
+      gameObject.drawString("Points: " + score, 20, 30);
 
       //Paddle
       gameObject.setColor(Color.green);
@@ -121,24 +121,25 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 	         				map.setBlockValue(0, i, j);
 	         				Bricks--;
 	         				score += 1;
-                     // 20% chance to drop a power-up
-                     if (Math.random() < 0.20) {
 
-                           int dropX = blockX + blockWidth / 2;
-                           int dropY = blockY;
+                            // 20% chance to drop a power-up
+                            if (Math.random() < 0.20) {
 
-                           int type = (int)(Math.random() * 2); 
+                                int dropX = blockX + blockWidth / 2;
+                                int dropY = blockY;
+
+                                int type = (int)(Math.random() * 2); 
     
 
-                           powerUps.add(new PowerUp(dropX, dropY, type));
-                        }
-	         				if(BallX + 19 <= blockRect.x || BallX + 1 >= blockRect.x + blockRect.width){
-	         					BallXdir = -BallXdir;
-	         				}else{
-	         					BallYdir = -BallYdir;
-	         				}
-                     
-	         				break A;
+                                powerUps.add(new PowerUp(dropX, dropY, type));
+                            }   
+	         			    if(BallX + 19 <= blockRect.x || BallX + 1 >= blockRect.x + blockRect.width){
+	         				    BallXdir = -BallXdir;
+	         			    }else{
+	         				    BallYdir = -BallYdir;
+	         			    }
+	         			    break A;
+
 	         			}
 	         		}	
 	         	}
@@ -159,33 +160,35 @@ public class Game extends JPanel implements KeyListener, ActionListener {
             level++;
             map = new mapGen(3, 7, level);
             Bricks = 3 * 7;
-            //map reset when all brick get destroyed(endless)
+            //map reset when all brick get destroyed
             
-               }
+            }
 
          }
          // Move power-ups
-for (int i = 0; i < powerUps.size(); i++) {
-    PowerUp p = powerUps.get(i);
-    p.update();
-
-    // If power-up touches paddle
-    if (new Rectangle(p.x, p.y, p.width, p.height).intersects(
-            new Rectangle(PlayerX, 550, 100, 8))) {
-
-        applyPowerUp(p.type);
-        p.active = false;
+    for (int i = 0; i < powerUps.size(); i++) {
+        PowerUp p = powerUps.get(i);
+        p.update();
+    
+        // If power-up touches paddle
+        if (new Rectangle(p.x, p.y, p.width, p.height).intersects(
+                new Rectangle(PlayerX, 550, 100, 8))) {
+                
+            applyPowerUp(p.type);
+            p.active = false;
+        }
+    
+        // Remove if off-screen
+        if (p.y > 600 || !p.active) {
+            powerUps.remove(i);
+            i--;
+        }
     }
-
-    // Remove if off-screen
-    if (p.y > 600 || !p.active) {
-        powerUps.remove(i);
-        i--;
-    }
-}
          
         repaint();
    }
+
+
    public void resetGame() {
     play = false;
 
@@ -204,7 +207,7 @@ for (int i = 0; i < powerUps.size(); i++) {
     repaint();
 }
 
- @Override
+    @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             if(PlayerX >= 600){
@@ -238,10 +241,12 @@ for (int i = 0; i < powerUps.size(); i++) {
                repaint();
             }
         }
+
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-            //Return to menu
+            System.exit(0);
         }
     }
+
     //Player Movements
     public void playerRight(){
       play = true;
