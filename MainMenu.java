@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 public class MainMenu {
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame("Main Menu");
+        JFrame frame = new JFrame("Brick Crash: Main Menu");
         frame.setSize(1000, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -38,7 +38,7 @@ public class MainMenu {
 
 
         //label/title
-        JLabel label = new JLabel("Brick Breaker");
+        JLabel label = new JLabel("Brick Crash");
         label.setFont(new Font("Arial", Font.BOLD, 86));
         label.setForeground(Color.WHITE);
 
