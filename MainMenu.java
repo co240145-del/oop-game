@@ -8,7 +8,7 @@ public class MainMenu {
 
         //Main Menu
         JFrame frame = new JFrame("Brick Crash: Main Menu");
-        frame.setSize(1000, 800);
+        frame.setSize(700, 600);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
