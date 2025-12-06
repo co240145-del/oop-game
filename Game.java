@@ -14,7 +14,7 @@ public class Game extends JPanel implements KeyListener, ActionListener {
 
 
    // Buff timer duration (ms)
-   private final int BUFF_DURATION = 5000; // 5 seconds
+   private int BUFF_DURATION = 5000; // 5 seconds
    private int Bricks = 21;
    private int paddleWidth = 100; // default
    private Timer time;
