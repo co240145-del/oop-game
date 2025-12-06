@@ -6,8 +6,10 @@ import java.awt.event.MouseEvent;
 public class MainMenu {
     public static void main(String[] args) {
 
+        //Main Menu
         JFrame frame = new JFrame("Brick Crash: Main Menu");
         frame.setSize(1000, 800);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -22,7 +24,7 @@ public class MainMenu {
         GameScene.add(game);
 
         // Background
-        Image backgroundImage = new ImageIcon("").getImage();
+        Image backgroundImage = new ImageIcon("Assets\\Background").getImage();
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
